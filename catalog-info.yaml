@@ -61,5 +61,6 @@ spec:
   type: openapi
   lifecycle: production
   owner: "user:hpgrahsl"
+  system: workshop-system-hpgrahsl-demo5
   definition:
     $text: https://github.com/Summit23DevLab/hpgrahsl-demo5-backend/tree/main/src/main/resources/META-INF/openapi.yaml
