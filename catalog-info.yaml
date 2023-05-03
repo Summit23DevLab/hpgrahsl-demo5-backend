@@ -1,0 +1,65 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: hpgrahsl-demo5-poi-backend-app-dev
+  annotations:
+    argocd/app-name: hpgrahsl-demo5-poi-backend-app-dev
+    backstage.io/kubernetes-id: hpgrahsl-demo5-poi-backend-app-dev
+    backstage.io/kubernetes-namespace: hpgrahsl-demo5
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=hpgrahsl-demo5-poi-backend-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: Summit23DevLab/hpgrahsl-demo5-backend
+  tags:
+    - java
+    - quarkus
+    - maven
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.summit23.0x74.p1.openshiftapps.com/dev-pipelines/ns/hpgrahsl-demo5/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.summit23.0x74.p1.openshiftapps.com/k8s/ns/hpgrahsl-demo5/deployments/poi-backend-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.summit23.0x74.p1.openshiftapps.com/#https://github.com/Summit23DevLab/hpgrahsl-demo5-backend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:hpgrahsl"
+  system: workshop-system-hpgrahsl-demo5
+  providesApis:
+    - backend-api-hpgrahsl-demo5
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-hpgrahsl-demo5
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:hpgrahsl"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: backend-api-hpgrahsl-demo5
+  description: API surface used by workshop attendees to initialize and load parks data
+  links:
+    - url: http://poi-backend-app-hpgrahsl-demo5.apps.summit23.0x74.p1.openshiftapps.com/q/swagger-ui
+      title: Swagger UI
+      icon: web
+    - url: https://github.com/Summit23DevLab/hpgrahsl-demo5-backend/tree/main/src/main/resources/META-INF/openapi.yaml
+      title: API Spec
+      icon: code
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "user:hpgrahsl"
+  definition:
+    $text: https://github.com/Summit23DevLab/hpgrahsl-demo5-backend/tree/main/src/main/resources/META-INF/openapi.yaml
